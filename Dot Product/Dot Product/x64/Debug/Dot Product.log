@@ -1,2 +1,3 @@
-﻿  main.c
+﻿  Performing Custom Build Tools
+  SIMDAsmDotProduct.asm:8: warning: label alone on a line without a colon might be in error
   Dot Product.vcxproj -> D:\Github_Repositories\Dot-Product-Impleentation\Dot Product\x64\Debug\Dot Product.exe

@@ -6,12 +6,14 @@
 
 // C Implementation
 long int cDotProduct(long unsigned int ARRAY_SIZE,long int *a, long int *b);
+extern long int asmDotProduct(long unsigned int ARRAY_SIZE, long int* a, long int* b);
+extern long int SIMDDotProduct(long unsigned int ARRAY_SIZE, long int* a, long int* b);
 
 int main(void) {
-	long unsigned int ARRAY_SIZE = 1 << 28; 
+	long unsigned int ARRAY_SIZE = 1 << 3; 
 	long int *a, *b;
 
-	long int c_sdot = 0;
+	long int c_sdot = 0, asm_sdot = 0,SIMD_sdot = 0;
 
 	// Allocate memory for input variables
 	a = (long int*)malloc(sizeof(long int) * ARRAY_SIZE);
@@ -23,9 +25,11 @@ int main(void) {
 	}
 	
 	c_sdot = cDotProduct(ARRAY_SIZE, a, b);
-
+	asm_sdot = asmDotProduct(ARRAY_SIZE, a, b);
+	SIMD_sdot = SIMDDotProduct(ARRAY_SIZE, a, b);
+	printf("%ld\n", c_sdot);
+	printf("%ld", asm_sdot);
 	
-	printf("%ld", c_sdot);
 
 	// Free allocated memory
 	free(a);
