@@ -10,7 +10,7 @@ extern long int asmDotProduct(long unsigned int ARRAY_SIZE, long int* a, long in
 extern long int SIMDDotProduct(long unsigned int ARRAY_SIZE, long int* a, long int* b);
 
 int main(void) {
-	long unsigned int ARRAY_SIZE = 1 << 3; 
+	long unsigned int ARRAY_SIZE = 1 << 28; 
 	long int *a, *b;
 
 	long int c_sdot = 0, asm_sdot = 0,SIMD_sdot = 0;
@@ -23,12 +23,17 @@ int main(void) {
 		a[i] = i + 1;
 		b[i] = i + 2;
 	}
-	
-	c_sdot = cDotProduct(ARRAY_SIZE, a, b);
+
+
+	c_sdot= cDotProduct(ARRAY_SIZE, a, b);
 	asm_sdot = asmDotProduct(ARRAY_SIZE, a, b);
 	SIMD_sdot = SIMDDotProduct(ARRAY_SIZE, a, b);
+
+	
 	printf("%ld\n", c_sdot);
-	printf("%ld", asm_sdot);
+	printf("%ld\n", asm_sdot);
+	printf("%ld", SIMD_sdot);
+
 	
 
 	// Free allocated memory
