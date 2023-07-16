@@ -2,7 +2,10 @@
  Link to CUDA implementation: https://colab.research.google.com/drive/1dxFkxKCokf-MbbmoTKiWeVs1MpCF6-hx?usp=sharing
  
 I. 
-
+Markdown | Less | Pretty
+--- | --- | ---
+*Still* | `renders` | **nicely**
+1 | 2 | 3
 **Each kernel result were tested on an input size of 2^20 and the average time was taken on 30 number of runs.**
 
 II. C Program  Result
