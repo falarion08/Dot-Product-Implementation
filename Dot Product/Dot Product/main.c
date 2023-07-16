@@ -10,10 +10,14 @@ extern long int asmDotProduct(long unsigned int ARRAY_SIZE, long int* a, long in
 extern long int SIMDDotProduct(long unsigned int ARRAY_SIZE, long int* a, long int* b);
 
 int main(void) {
-	long unsigned int ARRAY_SIZE = 1 << 28; 
+	long unsigned int ARRAY_SIZE = 1 << 20; 
 	long int *a, *b;
 
 	long int c_sdot = 0, asm_sdot = 0,SIMD_sdot = 0;
+
+	clock_t tStart = 0, tEnd = 0;
+	double tExecution = 0.0;
+
 
 	// Allocate memory for input variables
 	a = (long int*)malloc(sizeof(long int) * ARRAY_SIZE);
@@ -24,16 +28,36 @@ int main(void) {
 		b[i] = i + 2;
 	}
 
+	printf("Input Size: %lu\n\n", ARRAY_SIZE);
 
-	c_sdot= cDotProduct(ARRAY_SIZE, a, b);
-	asm_sdot = asmDotProduct(ARRAY_SIZE, a, b);
-	SIMD_sdot = SIMDDotProduct(ARRAY_SIZE, a, b);
+	// Measure average run for 30 number of runs
+	tStart = clock();
+	for (int i = 0; i < 30; ++i)
+		c_sdot= cDotProduct(ARRAY_SIZE, a, b);
+	tEnd = clock();
 
+	tExecution = (((double)tEnd - tStart) * 1e6 / CLOCKS_PER_SEC) / 30.0;
+	printf("C Program Output: %ld\n", c_sdot);
+	printf("Average runtime (milliseconds): %lf\n\n", tExecution);
+
+	tStart = clock();
+	for (int i = 0; i < 30; ++i)
+		asm_sdot = asmDotProduct(ARRAY_SIZE, a, b);
+	tEnd = clock();
+
+	tExecution = (((double)tEnd - tStart) * 1e6 / CLOCKS_PER_SEC) / 30.0;
+	printf("x64 Program Output: %ld\n", asm_sdot);
+	printf("Average runtime (milliseconds): %lf\n\n", tExecution);
+
+	tStart = clock();
+	for (int i = 0; i < 30; ++i)
+		SIMD_sdot = SIMDDotProduct(ARRAY_SIZE, a, b);
+	tEnd = clock();
+
+	tExecution = (((double)tEnd - tStart) * 1e6 / CLOCKS_PER_SEC) / 30.0;
+	printf("SIMD Program Output: %ld\n", SIMD_sdot);
+	printf("Average runtime (milliseconds): %lf\n\n", tExecution);
 	
-	printf("%ld\n", c_sdot);
-	printf("%ld\n", asm_sdot);
-	printf("%ld", SIMD_sdot);
-
 	
 
 	// Free allocated memory
