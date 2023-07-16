@@ -1,4 +1,5 @@
-![image](https://github.com/falarion08/Dot-Product-Implementation/assets/113824865/bd976b4e-3f71-40c2-8309-e34063b6164c)# Dot Product Implementation
+**Dot Product Implementation**
+
 Link to CUDA implementation: https://colab.research.google.com/drive/1dxFkxKCokf-MbbmoTKiWeVs1MpCF6-hx?usp=sharing
 
 Note:
