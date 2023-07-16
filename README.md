@@ -7,7 +7,7 @@ Important Notes:
 - The number of blocks and threads for each input sizes are both 1024 in length.
 - The implementation for CUDA uses cooperative groups with prefetching
 
-I. Analysis
+**I. Analysis**
 
 **Average Runtime (microseconds)**
 
