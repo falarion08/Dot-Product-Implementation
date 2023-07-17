@@ -67,7 +67,7 @@ Important Notes:
 
   ![image](https://github.com/falarion08/Dot-Product-Implementation/assets/113824865/f7b61922-4d95-4832-90b1-442e4e2163bf)
 
-- Register YMM3 stores the horizontal multiplaction of register YMM2 (Duplicates of the horizontal additions will occur)
+- Register YMM3 stores the horizontal addition of register YMM2 (Duplicates of the horizontal additions will occur)
 
   ![image](https://github.com/falarion08/Dot-Product-Implementation/assets/113824865/9d9da813-c8f1-4283-91f0-e790e18d8bb0)
 
