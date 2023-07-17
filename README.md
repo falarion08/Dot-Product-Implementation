@@ -16,7 +16,7 @@ Important Notes:
 **C** | 4,633.33 us | 129,600.00 us | 1,289,266.67 us 
 **x86-64**| 1,433.33 us | 28,366.67 us | 271,266.67 us
 **x86-SIMD** | 1,133.33 us | 16,166.67 us | 246,133.33 us 
-**CUDA** | 355.81us | 590.65 us | 80,138.00 us
+**CUDA** | 355.81us | 590.65 us | 8,013.80 us
 
 **Measuring Performance of x86-64, x86-SIMD, and CUDA to C Implementation**
 (How many times faster than normal C implementation)
@@ -24,20 +24,20 @@ Important Notes:
 --- | --- | --- | ---
 **x86-64**| 3.23 | 4.57 | 4.75
 **x86-SIMD** | 4.09 | 8.02 | 5.24 
-**CUDA** | 13.02 | 219.42 | 16.09 
+**CUDA** | 13.02 | 219.42 | 160.88  
 
 **Measuring Performance of x86-SIMD and CUDA to x86-64**
 (How many times faster than x86-64)
  Kernel | 2^20 | 2^24 | 2^28
 --- | --- | --- | ---
 **x86-SIMD** | 1.26 | 1.75 | 5.24 
-**CUDA** | 4.02 | 48.03 | 1.10
+**CUDA** | 4.02 | 48.03 | 33.85
 
 **Measuring Performance of CUDA to x86-SIMD**
 (How many times faster than x86-SIMD)
  Kernel | 2^20 | 2^24 | 2^28
 --- | --- | --- | ---
-**CUDA** | 3.19 | 27.37 | 3.07
+**CUDA** | 3.19 | 27.37 | 30.71
 
    From the table provided, it is observable that the assembly implementation of dot product is always faster than normal C Programming. This is mainly because it takes several instructions to run a for loop in when translated in assembly than doing a LOOP instruction call in assembly. x86-SIMD provides an even faster computation in computing the dot matrix as it can process multiple data with a single instruction. Specifically, a single instruction can perform operations on 8 or 16 integer elements, in which you could multiply, add, and other operations on the elements. For the CUDA implementation, cooperative groups was used along with prefetching in order to obtain huge perfomance gain by having faster execution time. Threads are partitions into smaller group of threads and performs mathematical operations and binary reduction. The execution time increases as smaller group of threads are synchronized and does not wait for all the threads in a block to reach a certain barrier of the code. In addition, prefetching sends the GPU data before it is needed while the CPU executes instructions. As a result, memory latency (cost of transferring data) to decrease. 
 
